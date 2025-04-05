@@ -34,7 +34,7 @@ class PriorityQueue {
     const beingTreated = this.queue.filter(p => p.status === "being treated");
     const discharged = this.queue.filter(p => p.status === "discharged");
   
-    // Sort waiting patients by triage + arrival time
+   
     waiting.sort((a, b) => {
       if (a.triageLevel !== b.triageLevel) {
         return a.triageLevel - b.triageLevel;
@@ -59,7 +59,7 @@ class PriorityQueue {
   }
 
   checkStaffing() {
-    //const DOCTOR_LIMIT = 3;
+    
     const STAFF_COUNT = 2;
     const SUPPORT_CAPACITY = STAFF_COUNT * 2; // Each staff handles 2 waiting patients
   
