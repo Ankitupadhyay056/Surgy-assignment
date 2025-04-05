@@ -22,7 +22,6 @@ exports.treatPatient = (req, res) => {
   const treatingNow = queue.filter(p => p.status === "being treated");
 
   if (treatingNow.length >= 3) {
-    // Emit socket event when treatment limit is reached
     req.patientQueue.io.emit("treatment-limit-reached", {
       message: " Treatment limit reached. Max 3 patients can be treated at once.",
     });
@@ -57,8 +56,6 @@ exports.dischargePatient = (req, res) => {
   }
 
   patient.status = "discharged";
-
-  // 👇 sort after status change
   req.patientQueue.sortQueue();
 
   req.patientQueue.io.emit("patient-discharged", patient);
